@@ -1,5 +1,5 @@
 <?php
 
-Route::get(config('TranslationsManager.routePrefix') . '/transtest', function () {
+Route::get(config('translationsmanager.routePrefix') . '/transtest', function () {
     return \ilBronza\TranslationsManager\TranslationController::tidy();
 });

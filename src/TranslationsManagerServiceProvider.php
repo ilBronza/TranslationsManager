@@ -31,10 +31,10 @@ class TranslationsManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/TranslationsManager.php', 'TranslationsManager');
+        $this->mergeConfigFrom(__DIR__.'/../config/translationsmanager.php', 'translationsmanager');
 
         // Register the service the package provides.
-        $this->app->singleton('TranslationsManager', function ($app) {
+        $this->app->singleton('translationsmanager', function ($app) {
             return new TranslationsManager;
         });
 
@@ -62,8 +62,8 @@ class TranslationsManagerServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/TranslationsManager.php' => config_path('TranslationsManager.php'),
-        ], 'TranslationsManager.config');
+            __DIR__.'/../config/translationsmanager.php' => config_path('translationsmanager.php'),
+        ], 'translationsmanager.config');
 
         // Publishing the views.
         /*$this->publishes([
