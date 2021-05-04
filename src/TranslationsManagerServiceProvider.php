@@ -1,6 +1,6 @@
 <?php
 
-namespace ilBronza\TranslationsManager;
+namespace IlBronza\TranslationsManager;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +16,7 @@ class TranslationsManagerServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ilbronza');
 
         $this->loadViewsFrom(__DIR__.'/views', 'ilbronza');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Publishing is only necessary when using the CLI.
@@ -40,7 +40,7 @@ class TranslationsManagerServiceProvider extends ServiceProvider
         });
 
         $this->app->extend(\Illuminate\Translation\Translator::class, function ($translator) {
-            return new \ilBronza\TranslationsManager\TranslationsManager($translator->getLoader(), $translator->getLocale());
+            return new \IlBronza\TranslationsManager\TranslationsManager($translator->getLoader(), $translator->getLocale());
         });
     }
 

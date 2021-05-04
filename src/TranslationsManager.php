@@ -1,7 +1,9 @@
 <?php
 
-namespace ilBronza\TranslationsManager;
+namespace IlBronza\TranslationsManager;
 
+use IlBronza\TranslationsManager\Models\Missingtranslation;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Translation\Translator;
 
@@ -40,25 +42,20 @@ class TranslationsManager extends Translator
         if($line)
             return $line;
 
-        if(! Storage::disk('local')->exists('translations.json'))
-            Storage::disk('local')->put('translations.json', json_encode([]));
-
-        $contents = Storage::disk('local')->get('translations.json');
-
-        $translations = json_decode($contents, true);
-
         $pieces = explode(".", $key);
+
         $filename = array_shift($pieces);
-
-        if(! isset($translations[$filename]))
-            $translations[$filename] = [];
-
         $string = implode(".", $pieces);
 
-        if(! in_array($string, $translations[$filename]))
-            $translations[$filename][] = $string;
+        $parameters = [
+            'filename' => $filename,
+            'string' => $string,
+            'variables' => json_encode(array_keys($replace)),
+            'language' => Config::get('app.locale')
+        ];
 
-        Storage::disk('local')->put('translations.json', json_encode($translations));
+        if(! Missingtranslation::where($parameters)->first())
+            Missingtranslation::create($parameters);
 
         return $key;
 

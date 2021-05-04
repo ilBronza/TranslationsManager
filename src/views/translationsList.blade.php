@@ -49,7 +49,7 @@
 											<a data-file="{{ $fileName }}" data-key="{{ $key }}" data-id="{{ $fileName }}_{{ $key }}" class="save" href="javascript:void(0)" uk-icon="refresh"></a>
 										</td>
 										<td>
-											<a href="{{ route('ilBronza.translations.removeKey', [
+											<a href="{{ route('IlBronza.translations.removeKey', [
 												'file' => $fileName,
 												'key' => $key
 												]) }}" uk-icon="trash"></a>

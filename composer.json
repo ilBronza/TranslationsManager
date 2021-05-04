@@ -4,7 +4,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "ilBronza",
+            "name": "IlBronza",
             "email": "davide@sistema.srl",
             "homepage": "https://www.sistema.srl"
         }
@@ -12,27 +12,26 @@
     "homepage": "https://github.com/ilbronza/translationsmanager",
     "keywords": ["Laravel", "TranslationsManager"],
     "require": {
-        "illuminate/support": "~5|~6|~7"
     },
     "require-dev": {
     },
     "autoload": {
         "psr-4": {
-            "ilBronza\\TranslationsManager\\": "src/"
+            "IlBronza\\TranslationsManager\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ilBronza\\TranslationsManager\\Tests\\": "tests"
+            "IlBronza\\TranslationsManager\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ilBronza\\TranslationsManager\\TranslationsManagerServiceProvider"
+                "IlBronza\\TranslationsManager\\TranslationsManagerServiceProvider"
             ],
             "aliases": {
-                "TranslationsManager": "ilBronza\\TranslationsManager\\Facades\\TranslationsManager"
+                "TranslationsManager": "IlBronza\\TranslationsManager\\Facades\\TranslationsManager"
             }
         }
     }

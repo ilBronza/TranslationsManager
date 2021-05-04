@@ -1,6 +1,6 @@
 <?php
 
-namespace ilBronza\TranslationsManager\Facades;
+namespace IlBronza\TranslationsManager\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

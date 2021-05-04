@@ -1,6 +1,6 @@
 <?php
 
-namespace ilBronza\TranslationsManager;
+namespace IlBronza\TranslationsManager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -80,14 +80,5 @@ return [
         Storage::disk('local')->put('translations.json', json_encode($translations));
 
 		return back();
-	}
-
-	static function tidy()
-	{
-		$contents = Storage::disk('local')->get('translations.json');
-
-		$translations = json_decode($contents, true);
-
-        return view('ilbronza::translationsList', compact('translations'));
 	}
 }
