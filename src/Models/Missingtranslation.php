@@ -28,6 +28,8 @@ class Missingtranslation extends Model
 		'deleted_at'
 	];
 
+	public $deletingRelationships = [];
+
 	public function getVariablesString()
 	{
 		$pieces = json_decode($this->variables);
