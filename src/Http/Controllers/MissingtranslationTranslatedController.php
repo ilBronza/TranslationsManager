@@ -2,12 +2,10 @@
 
 namespace IlBronza\TranslationsManager\Http\Controllers;
 
-use App\Http\Controllers\CRUDTraits\CRUDMissingtranslationParametersTrait;
 use IlBronza\CRUD\CRUD;
-
 use IlBronza\CRUD\Traits\CRUDIndexTrait;
 use IlBronza\CRUD\Traits\CRUDPlainIndexTrait;
-
+use IlBronza\TranslationsManager\Http\Controllers\CRUDTraits\CRUDMissingtranslationParametersTrait;
 use IlBronza\TranslationsManager\Models\Missingtranslation;
 use Illuminate\Http\Request;
 
