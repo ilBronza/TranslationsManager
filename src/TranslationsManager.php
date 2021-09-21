@@ -54,7 +54,7 @@ class TranslationsManager extends Translator
             'language' => Config::get('app.locale')
         ];
 
-        if(! Missingtranslation::where($parameters)->first())
+        if(! Missingtranslation::getByParameters($parameters))
             Missingtranslation::create($parameters);
 
         return $key;
