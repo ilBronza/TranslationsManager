@@ -31,7 +31,7 @@ class AddJsonFieldToMissingtranslationsTable extends Migration
     {
         Schema::table('missingtranslations', function (Blueprint $table) {
             $table->dropColumn('data');
-            $table->dropColumn('argsh');
+            $table->dropColumn('args');
             $table->dropColumn('file');
             $table->dropColumn('line');
             $table->dropColumn('method');
