@@ -34,7 +34,7 @@ class Missingtranslation extends Model
 		'args' => 'json'
 	];
 
-	public $deletingRelationships = [];
+	static $deletingRelationships = [];
 
 	static function getByParameters(array $parameters)
 	{
