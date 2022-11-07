@@ -29,6 +29,8 @@ class MissingtranslationController extends CRUD
      **/
     public $modelClass = Missingtranslation::class;
 
+    public $avoidCreateButton = true;
+
     /**
      * http methods allowed. remove non existing methods to get a 403
      **/
