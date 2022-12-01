@@ -35,8 +35,12 @@ class TranslationsManagerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/translationsmanager.php', 'translationsmanager');
 
         // Register the service the package provides.
-        $this->app->singleton('translationsmanager', function ($app) {
-            return new TranslationsManager;
+        // $this->app->singleton('translationsmanager', function ($app) {
+        //     return new TranslationsManager;
+        // });
+
+        $this->app->singleton('translationsMenuManager', function ($app) {
+            return new TranslationsMenuManager;
         });
 
         $this->app->extend(\Illuminate\Translation\Translator::class, function ($translator) {
