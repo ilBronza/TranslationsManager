@@ -3,6 +3,7 @@
 namespace IlBronza\TranslationsManager;
 
 use IlBronza\TranslationsManager\Models\Missingtranslation;
+use IlBronza\Ukn\Facades\Ukn;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Translation\Translator;
@@ -54,8 +55,12 @@ class TranslationsManager extends Translator
             'language' => Config::get('app.locale')
         ];
 
-        if(! Missingtranslation::getByParameters($parameters))
-            Missingtranslation::create($parameters);
+        try {
+            if(! Missingtranslation::getByParameters($parameters))
+                Missingtranslation::create($parameters);            
+        } catch (\Throwable $e) {
+            Ukn::e('Error on insert for ' . json_encode($parameters));
+        }
 
         return $key;
 
