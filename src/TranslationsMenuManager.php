@@ -20,9 +20,21 @@ class TranslationsMenuManager
 
         $translationsButton = $menu->createButton([
             'name' => 'translations',
-            'text' => 'generals.translations',
-            'href' => route('missingtranslations.index'),
-            'roles' => ['administrator']
+            'text' => 'translationsmanager::translationsmanager.translations',
+            'roles' => ['administrator'],
+            'icon' => 'language',
+            'children' => [
+                [
+                    'icon' => 'pen-to-square',
+                    'href' => route('missingtranslations.index'),
+                    'text' => 'translationsmanager::translationsmanager.index'
+                ],
+                [
+                    'icon' => 'trash',
+                    'href' => route('missingtranslations.resetDB'),
+                    'text' => 'translationsmanager::translationsmanager.resetDatabase'
+                ],
+            ]
         ]);
 
         $button->addChild($translationsButton);

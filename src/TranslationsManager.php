@@ -48,6 +48,12 @@ class TranslationsManager extends Translator
         $filename = array_shift($pieces);
         $string = implode(".", $pieces);
 
+        // if(! $filename)
+        //     dddl($key);
+
+        // if(! $string)
+        //     dddl($key);
+
         $parameters = [
             'filename' => $filename,
             'string' => $string,

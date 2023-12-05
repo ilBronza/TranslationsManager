@@ -13,7 +13,7 @@ class TranslationsManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ilbronza');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'translationsmanager');
 
         $this->loadViewsFrom(__DIR__.'/views', 'ilbronza');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
@@ -39,7 +39,7 @@ class TranslationsManagerServiceProvider extends ServiceProvider
         //     return new TranslationsManager;
         // });
 
-        $this->app->singleton('translationsMenuManager', function ($app) {
+        $this->app->singleton('translationsmenumanager', function ($app) {
             return new TranslationsMenuManager;
         });
 
@@ -55,7 +55,7 @@ class TranslationsManagerServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['TranslationsManager'];
+        return ['translationsmanager'];
     }
 
     /**

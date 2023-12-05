@@ -60,6 +60,11 @@ class Missingtranslation extends Model
 		return $query->whereNotNull('translated_at');
 	}
 
+	public function scopeApplication($query)
+	{
+		return $query->where('string', 'not like', '%::%')->where('filename', 'not like', '%::%');
+	}
+
 	public function scopeToTranslate($query)
 	{
 		return $query->whereNull('translated_at');

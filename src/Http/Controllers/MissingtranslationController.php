@@ -42,7 +42,7 @@ class MissingtranslationController extends CRUD
 
     public function getIndexElements()
     {
-        return Missingtranslation::toTranslate()->get();
+        return Missingtranslation::toTranslate()->application()->get();
     }
 
     public function update(Request $request, Missingtranslation $missingtranslation)
