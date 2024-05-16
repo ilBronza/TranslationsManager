@@ -3,7 +3,7 @@
 use IlBronza\TranslationsManager\Http\Controllers\ResetTranslationsDBController;
 
 Route::group([
-	'middleware' => ['web', 'auth', 'role:administrator'],
+	'middleware' => ['web', 'auth', 'role:administrator|superadmin'],
 	'prefix' => 'translations-management',
 	'routeTranslationPrefix' => 'translationsmanager::routes.',
 	'namespace' => 'IlBronza\TranslationsManager\Http\Controllers'

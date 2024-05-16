@@ -8,8 +8,11 @@ use IlBronza\CRUD\Traits\CRUDDestroyTrait;
 use IlBronza\CRUD\Traits\CRUDEditUpdateTrait;
 use IlBronza\CRUD\Traits\CRUDIndexTrait;
 use IlBronza\CRUD\Traits\CRUDPlainIndexTrait;
+use IlBronza\CRUD\Traits\CRUDRelationshipTrait;
+use IlBronza\CRUD\Traits\CRUDShowTrait;
 use IlBronza\CRUD\Traits\CRUDUpdateEditorTrait;
 use IlBronza\TranslationsManager\Http\Controllers\CRUDTraits\CRUDMissingtranslationParametersTrait;
+use IlBronza\TranslationsManager\Http\Controllers\CRUDTraits\MissingTranslationsShowParametersFile;
 use IlBronza\TranslationsManager\Models\Missingtranslation;
 use Illuminate\Http\Request;
 
@@ -19,6 +22,8 @@ class MissingtranslationController extends CRUD
 
     use CRUDPlainIndexTrait;
     use CRUDIndexTrait;
+    use CRUDShowTrait;
+    use CRUDRelationshipTrait;
     use CRUDEditUpdateTrait;
     use CRUDUpdateEditorTrait;
 
@@ -36,13 +41,24 @@ class MissingtranslationController extends CRUD
      **/
     public $allowedMethods = [
         'index',
+        'show',
         'update',
         'destroy',
     ];
 
+    public function getShowParametersFile()
+    {
+        return MissingTranslationsShowParametersFile::class;
+    }
+
     public function getIndexElements()
     {
         return Missingtranslation::toTranslate()->application()->get();
+    }
+
+    public function show(Missingtranslation $missingtranslation)
+    {
+        return $this->_show($missingtranslation);
     }
 
     public function update(Request $request, Missingtranslation $missingtranslation)

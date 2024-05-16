@@ -46,6 +46,12 @@ class TranslationsManager extends Translator
         $pieces = explode(".", $key);
 
         $filename = array_shift($pieces);
+
+        $scopePieces = explode("::", $filename);
+
+        $filename = array_pop($scopePieces);
+        $scope = array_shift($scopePieces);
+
         $string = implode(".", $pieces);
 
         // if(! $filename)
@@ -55,8 +61,10 @@ class TranslationsManager extends Translator
         //     dddl($key);
 
         $parameters = [
+            'scope' => $scope,
             'filename' => $filename,
             'string' => $string,
+            // 'backtrace' => debug_backtrace(),
             'variables' => json_encode(array_keys($replace)),
             'language' => Config::get('app.locale')
         ];
@@ -65,7 +73,7 @@ class TranslationsManager extends Translator
             if(! Missingtranslation::getByParameters($parameters))
                 Missingtranslation::create($parameters);            
         } catch (\Throwable $e) {
-            Ukn::e('Error on insert for ' . json_encode($parameters));
+            Ukn::e('Error on insert for ' . json_encode($parameters) . ' ' . $e->getMessage());
         }
 
         return $key;

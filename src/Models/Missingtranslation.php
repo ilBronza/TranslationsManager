@@ -18,8 +18,10 @@ class Missingtranslation extends Model
 	use CRUDModelTrait;
 
 	protected $fillable = [
+		'scope',
 		'filename',
 		'string',
+		'backtrace',
 		'variables',
 		'language'
 	];
@@ -46,6 +48,16 @@ class Missingtranslation extends Model
 				return static::where($parameters)->first();
 			}
 		);
+	}
+
+	public function getPrettyDataAttribute()
+	{
+		return json_encode($this->data ?? []);
+	}
+
+	public function getPrettyArgsAttribute()
+	{
+		return json_encode($this->args ?? []);
 	}
 
 	public function getVariablesString()
@@ -98,16 +110,23 @@ class Missingtranslation extends Model
 
 		static::updating(function($model)
 		{
-			$rootPath = base_path('/resources/lang/' . $model->language);
+			$scope = $model->scope;
+
+
+			$rootPath = base_path('resources/lang/' . ($scope? "vendor/{$scope}/" : "") . $model->language);
+
 			$client = Storage::createLocalDriver(['root' => $rootPath]);
 
-			$filename = $model->filename . '.php';
+			$filename = "{$model->filename}.php";
 
 			if(! $client->exists($filename))
 				$client->put($filename, "<?php\n\nreturn ".var_export([], true).';'.\PHP_EOL);
 
 			app()->setLocale($model->language);
-			$translations = \Lang::get($model->filename);
+
+
+			$fileScopeSource = $scope? "{$scope}::{$model->filename}" : "{$model->filename}";
+			$translations = \Lang::get($fileScopeSource);
 
 			if(is_string($translations))
 				$translations = [];

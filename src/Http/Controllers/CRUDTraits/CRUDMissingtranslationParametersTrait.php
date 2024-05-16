@@ -7,12 +7,15 @@ trait CRUDMissingtranslationParametersTrait
     public static $tables = [
 
         'index' => [
+            'translationPrefix' => 'translationsmanager::fields',
             'fields' => 
             [
                 'language' => [
                     'type' => 'flat',
                     'width' => '25px'
                 ],
+                'mySelfSee' => 'links.see',
+                'scope' => 'flat',
                 'filename' => 'flat',
                 'string' => 'flat',
                 'mySelfVariables' => '_fn_getVariablesString',

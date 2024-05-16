@@ -21,7 +21,6 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^7.0",
