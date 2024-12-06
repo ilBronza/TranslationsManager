@@ -3,6 +3,7 @@
 namespace IlBronza\TranslationsManager\Http\Controllers;
 
 use IlBronza\CRUD\CRUD;
+use IlBronza\CRUD\Http\Controllers\BasePackageController;
 use IlBronza\CRUD\Traits\CRUDDeleteTrait;
 use IlBronza\CRUD\Traits\CRUDDestroyTrait;
 use IlBronza\CRUD\Traits\CRUDEditUpdateTrait;
@@ -16,8 +17,11 @@ use IlBronza\TranslationsManager\Http\Controllers\CRUDTraits\MissingTranslations
 use IlBronza\TranslationsManager\Models\Missingtranslation;
 use Illuminate\Http\Request;
 
-class MissingtranslationController extends CRUD
+class MissingtranslationController extends BasePackageController
 {
+    static $packageConfigPrefix = 'translationsmanager';
+    public $configModelClassName = 'missingtranslation';
+
     use CRUDMissingtranslationParametersTrait;
 
     use CRUDPlainIndexTrait;
@@ -29,10 +33,15 @@ class MissingtranslationController extends CRUD
 
     use CRUDDeleteTrait;
     use CRUDDestroyTrait;
+
     /**
      * subject model class full path
      **/
-    public $modelClass = Missingtranslation::class;
+
+    public function setModelClass()
+    {
+        $this->modelClass = Missingtranslation::class;        
+    }
 
     public $avoidCreateButton = true;
 

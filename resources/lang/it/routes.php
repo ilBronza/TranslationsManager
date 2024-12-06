@@ -1,5 +1,5 @@
 <?php
 
 return [
-	'missingtranslations.index' => 'Indice',
+	'missingtranslations.index' => 'Indice traduzioni mancanti',
 ];
