@@ -40,10 +40,10 @@ class TranslationsManager extends Translator
                     break;
         }
 
-        if($line)
-            return $line;
+	    if($line)
+		    return $this->makeReplacements($line, $replace);
 
-        $pieces = explode(".", $key);
+	    $pieces = explode(".", $key);
 
         $filename = array_shift($pieces);
 
@@ -71,7 +71,7 @@ class TranslationsManager extends Translator
 
         try {
             if(! Missingtranslation::getByParameters($parameters))
-                Missingtranslation::create($parameters);            
+                Missingtranslation::create($parameters);
         } catch (\Throwable $e) {
             Ukn::e('Error on insert for ' . json_encode($parameters) . ' ' . $e->getMessage());
         }
