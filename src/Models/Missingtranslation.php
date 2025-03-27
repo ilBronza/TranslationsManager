@@ -26,12 +26,9 @@ class Missingtranslation extends Model
 		'language'
 	];
 
-	protected $dates = [
-		'translated_at',
-		'deleted_at'
-	];
-
 	protected $casts = [
+		'translated_at' => 'datetime',
+		'deleted_at' => 'datetime',
 		'data' => 'json',
 		'args' => 'json'
 	];
