@@ -18,6 +18,7 @@ trait CRUDMissingtranslationParametersTrait
                 'scope' => 'flat',
                 'filename' => 'flat',
                 'string' => 'flat',
+//	            'data' => 'json',
                 'mySelfVariables' => '_fn_getVariablesString',
                 'translation' => [
                     'type' => 'editor.text',
