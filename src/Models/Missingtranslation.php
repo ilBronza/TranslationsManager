@@ -96,9 +96,7 @@ class Missingtranslation extends Model
 				return $result;
 		}
 
-		dd($backtrace);
-
-		return null;
+		return [];
 	}
 
 	public static function boot()
@@ -143,10 +141,14 @@ class Missingtranslation extends Model
 			$file = end($backtrace);
 
 			$model->data = $backtrace;
-			$model->args = $file['args'];
-			$model->file = $file['file'];
-			$model->line = $file['line'];
-			$model->method = $file['function'];
+			$model->args = $file['args'] ?? "-";
+			$model->file = $file['file'] ?? "-";
+			$model->line = $file['line'] ?? "-";
+			$model->method = $file['function'] ?? "-";
+			$model->variables = json_encode([]);
+			$model->filename = "-";
+			$model->language = "-";
+			$model->string = "-";
 		});
 
 		// static::created(function($model)

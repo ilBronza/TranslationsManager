@@ -70,9 +70,11 @@ class MissingtranslationController extends BasePackageController
         return $this->_show($missingtranslation);
     }
 
-    public function update(Request $request, Missingtranslation $missingtranslation)
+    public function update(Request $request, string $missingtranslation)
     {
-        return $this->_update($request, $missingtranslation);
+        $model = Missingtranslation::find($missingtranslation);
+
+        return $this->_update($request, $model);
     }
 
     public function destroy(Missingtranslation $missingtranslation)
