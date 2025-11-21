@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Translation\Translator;
 
+use function json_encode;
+
 class TranslationsManager extends Translator
 {
     public function get($key, array $replace = [], $locale = null, $fallback = true)
@@ -68,6 +70,12 @@ class TranslationsManager extends Translator
             'variables' => json_encode(array_keys($replace)),
             'language' => Config::get('app.locale')
         ];
+
+		if(config('translationsmanager.forceTranslations', false))
+			throw new \Exception(json_encode([
+				$key, $replace , $locale, $fallback,
+				$parameters
+			]));
 
         try {
             if(! Missingtranslation::getByParameters($parameters))

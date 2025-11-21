@@ -136,19 +136,19 @@ class Missingtranslation extends Model
 
 		static::creating(function($model)
 		{
-			$backtrace = static::getBacktraceCallingFiles();
+//			$backtrace = static::getBacktraceCallingFiles();
 
-			$file = end($backtrace);
+//			$file = end($backtrace);
 
-			$model->data = $backtrace;
-			$model->args = $file['args'] ?? "-";
-			$model->file = $file['file'] ?? "-";
-			$model->line = $file['line'] ?? "-";
-			$model->method = $file['function'] ?? "-";
-			$model->variables = json_encode([]);
-			$model->filename = "-";
-			$model->language = "-";
-			$model->string = "-";
+			$model->data = static::getBacktraceCallingFiles();
+//			$model->args = $file['args'] ?? "-";
+//			$model->file = $file['file'] ?? "-";
+//			$model->line = $file['line'] ?? "-";
+//			$model->method = $file['function'] ?? "-";
+//			$model->variables = json_encode([]);
+//			$model->filename = "-";
+//			$model->language = "-";
+//			$model->string = "-";
 		});
 
 		// static::created(function($model)

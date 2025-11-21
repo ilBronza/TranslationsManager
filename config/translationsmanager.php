@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'routePrefix' => 'il-bronza'
+    'routePrefix' => 'il-bronza',
+
+	'forceTranslations' => false
 ];
