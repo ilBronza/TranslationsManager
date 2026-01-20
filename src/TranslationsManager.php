@@ -3,7 +3,7 @@
 namespace IlBronza\TranslationsManager;
 
 use IlBronza\TranslationsManager\Models\Missingtranslation;
-use IlBronza\Ukn\Facades\Ukn;
+use IlBronza\Ukn\Ukn;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Translation\Translator;
