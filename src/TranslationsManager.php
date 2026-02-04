@@ -72,10 +72,15 @@ class TranslationsManager extends Translator
         ];
 
 		if(config('translationsmanager.forceTranslations', false))
-			throw new \Exception(json_encode([
-				$key, $replace , $locale, $fallback,
-				$parameters
-			]));
+        {
+            if($filename != 'pageClasses')
+                // dd([$key, $replace , $locale, $fallback, $parameters]);
+
+                throw new \Exception(json_encode([
+                    $key, $replace , $locale, $fallback,
+                    $parameters
+                ]));            
+        }
 
         try {
             if(! Missingtranslation::getByParameters($parameters))
