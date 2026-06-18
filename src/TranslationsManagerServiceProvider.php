@@ -2,6 +2,7 @@
 
 namespace IlBronza\TranslationsManager;
 
+use IlBronza\TranslationsManager\Services\MissingTranslationBuffer;
 use Illuminate\Support\ServiceProvider;
 
 class TranslationsManagerServiceProvider extends ServiceProvider
@@ -23,6 +24,8 @@ class TranslationsManagerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
         }
+
+        $this->app->terminating(fn () => $this->app->make(MissingTranslationBuffer::class)->flush());
     }
 
     /**
@@ -41,6 +44,10 @@ class TranslationsManagerServiceProvider extends ServiceProvider
 
         $this->app->singleton('translationsmenumanager', function ($app) {
             return new TranslationsMenuManager;
+        });
+
+        $this->app->singleton(MissingTranslationBuffer::class, function ($app) {
+            return new MissingTranslationBuffer;
         });
 
         $this->app->extend(\Illuminate\Translation\Translator::class, function ($translator) {

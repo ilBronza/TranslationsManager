@@ -17,6 +17,11 @@ class Missingtranslation extends Model
 {
 	use CRUDModelTrait;
 
+    protected function shouldLogEvent(string $eventName): bool
+    {
+    	return false;
+    }
+
 	protected $fillable = [
 		'scope',
 		'filename',

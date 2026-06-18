@@ -3,5 +3,7 @@
 return [
     'routePrefix' => 'il-bronza',
 
-	'forceTranslations' => false
+	'forceTranslations' => false,
+
+    'debug' => false
 ];

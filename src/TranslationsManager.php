@@ -3,7 +3,9 @@
 namespace IlBronza\TranslationsManager;
 
 use IlBronza\TranslationsManager\Models\Missingtranslation;
+use IlBronza\TranslationsManager\Services\MissingTranslationBuffer;
 use IlBronza\Ukn\Ukn;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Translation\Translator;
@@ -82,18 +84,21 @@ class TranslationsManager extends Translator
                 ]));            
         }
 
+        if (((int) Auth::id() === 1) && config('translationsmanager.debug', false)) {
+            Ukn::e($key);
+        }
+
         try {
-            if(! Missingtranslation::getByParameters($parameters))
-                Missingtranslation::create($parameters);
+            $buffer = app(MissingTranslationBuffer::class);
+
+            if (! $buffer->has($parameters)) {
+                $parameters['data'] = Missingtranslation::getBacktraceCallingFiles();
+                $buffer->push($parameters);
+            }
         } catch (\Throwable $e) {
-            Ukn::e('Error on insert for ' . json_encode($parameters) . ' ' . $e->getMessage());
+            Ukn::e('Error buffering missing translation for ' . json_encode($parameters) . ' ' . $e->getMessage());
         }
 
         return $key;
-
-        // If the line doesn't exist, we will return back the key which was requested as
-        // that will be quick to spot in the UI if language keys are wrong or missing
-        // from the application's language files. Otherwise we can return the line.
-        return $this->makeReplacements($line ?: $key, $replace);
     }
 }
