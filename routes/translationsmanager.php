@@ -1,11 +1,12 @@
 <?php
 
 use IlBronza\TranslationsManager\Http\Controllers\ResetTranslationsDBController;
+use IlBronza\TranslationsManager\TranslationsMenuManager;
 
 Route::group([
 	'middleware' => ['web', 'auth', 'role:administrator|superadmin'],
 	'prefix' => 'translations-management',
-	'routeTranslationPrefix' => 'translationsmanager::routes.',
+	'routeTranslationPrefix' => TranslationsMenuManager::getRouteTranslationPrefix(),
 	'namespace' => 'IlBronza\TranslationsManager\Http\Controllers'
 	],
 	function()

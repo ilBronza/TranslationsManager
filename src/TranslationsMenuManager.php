@@ -2,8 +2,14 @@
 
 namespace IlBronza\TranslationsManager;
 
+use IlBronza\CRUD\Traits\IlBronzaPackages\IlBronzaPackagesTrait;
+
 class TranslationsMenuManager
 {
+	use IlBronzaPackagesTrait;
+
+	static $packageConfigPrefix = 'translationsmanager';
+
     public function manageMenuButtons()
     {
         if(! $menu = app('menu'))
