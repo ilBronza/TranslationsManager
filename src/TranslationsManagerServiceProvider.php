@@ -2,6 +2,7 @@
 
 namespace IlBronza\TranslationsManager;
 
+use IlBronza\TranslationsManager\Console\Commands\AuditRouteTitlesCommand;
 use IlBronza\TranslationsManager\Services\MissingTranslationBuffer;
 use Illuminate\Support\ServiceProvider;
 
@@ -93,6 +94,8 @@ class TranslationsManagerServiceProvider extends ServiceProvider
         ], 'TranslationsManager.views');*/
 
         // Registering package commands.
-        // $this->commands([]);
+        $this->commands([
+            AuditRouteTitlesCommand::class,
+        ]);
     }
 }
