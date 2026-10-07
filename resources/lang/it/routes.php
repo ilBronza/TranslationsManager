@@ -15,4 +15,7 @@ return [
 	'missingtranslationsstore' => 'Salva traduzione mancante',
 	'missingtranslationstranslated' => 'Tradotte — traduzione mancante',
 	'missingtranslationsupdate' => 'Aggiorna traduzione mancante',
+    'missingtranslations.archived' => 'Archivio: traduzioni mancanti',
+    'missingtranslations.create' => 'Crea traduzione mancante',
+    'missingtranslations.edit' => 'Modifica traduzione mancante',
 ];
